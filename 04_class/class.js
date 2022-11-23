@@ -53,7 +53,7 @@ ellie.speak();
 
 Getter and setters를 사용하는 이유?
 사용자가 실수로 엉뚱한 값을 넣는 상황에 대비해서
-실수로 엉뚱한 값을 애초에 넣지 않도록 템플릿을 만들 때 사용.
+엉뚱한 값을 수정/예외처리를 해서 템플릿을 만들어 줄 때 주로 사용.
 
 get 키워드로 값을 리턴
 
@@ -80,11 +80,14 @@ class User {
   }
 }
 
+const user1 = new User('Steve', 'Job', -1);
+
 =====================================================
 
 위와 같이만 하게 되면 call stack이 초과되었다는 에러가 뜬다.
 
-우리가 getter를 정의하는 순간 constructor 안에 들어있는 this.age는 
+우리가 getter를 정의하는 순간 
+constructor 안에 들어있는 this.age는 
 메모리에 있는 데이터를 읽어오는 것이 아니라 getter를 호출하게 된다. 
 
 
@@ -107,21 +110,22 @@ setter, getter 안에서는 속성의 이름을 다르게 짓는다.
 
 
 class User {
-  constructor(firstName, lastName, age) {
+  constructor(firstName, lastName, 나이) {
     this.firstName = firstName;
     this.lastName = lastName;
-    this.age = age;
+    this.age = 나이;
   }
 
-  get age() {
+  get age() { // constructor 안의 age를 받아왔다.
     return this._age; // setter 무한정 호출을 방지하기 위해서 _를 붙여서 이름을 다르게 만들었다.
   }
 
-  set age(value) {
+  set age(value) { // constructor 안의 this.age에 할당된 '나이'를 value로 받는다.
     // if (value < 0) {
     //   throw Error('age can not be negative');
     // }
     this._age = value < 0 ? 0 : value; // 0 보다 작으면 0을 넣고, 아니라면 지정된 value를 넣어라
+
   }
 }
 
@@ -129,6 +133,32 @@ const user1 = new User('Steve', 'Job', -1); // 사람의 나이는 음수가 될
 console.log(user1.age); // 0
 
 
+
+// 내가 이해가 잘 안되서 예시 하나 더 만듬
+
+
+class 사람 {
+  constructor(firstName, lastName, 나이) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = 나이; // this.age = this._age + 20 이렇게 된 것이다. 9 + 20 = 29
+  }
+
+  get age() { 
+    return this._age + 20; 
+  }
+
+  set age(value) { // 나이에서 -1을 받아와서 value로 전달
+
+    this._age = value + 10 // 9
+
+  }
+}
+
+const user2 = new 사람('지성', '박', -1);
+console.log(user2);
+console.log(user2.age); // 29
+console.log(user2._age); // 9
 
 
 
