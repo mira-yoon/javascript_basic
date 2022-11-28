@@ -130,7 +130,7 @@ const password = prompt('enter your passrod');
 userStorage.loginUser(
   id,
   password,
-  user => { // 로그인 성공시 파라미터인 id가 인자인 user로 전달된다.
+  user => { // 로그인 성공시 파라미터인 id가 user로 전달된다.
     userStorage.getRoles(
       user,
       userWithRole => {
