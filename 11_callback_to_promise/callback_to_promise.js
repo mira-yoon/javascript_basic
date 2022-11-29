@@ -40,8 +40,25 @@ const userStorage = new UserStorage();
 const id = prompt('enter your id');
 const password = prompt('enter your passrod');
 
+/*
 userStorage.loginUser(id,password)
   .then(user => userStorage.getRoles(user)) // .then(userStorage.getRoles) 이렇게 축약 가능
   .then(user => alert(`Hello ${user.name}, you have a ${user.role} role`))
   .catch(error => console.log(error)) // .catch(console.log(error)) 이렇게 축약 가능
+*/
+
+// promise chaining 한 것을 async와 await을 사용해서 바꿔 보았다. 
+async function login(){
+  try {
+    const user = await userStorage.loginUser(id,password);
+    const role = await userStorage.getRoles(user);
+    return alert(`Hello ${role.name}, you have a ${role.role} role`);
+
+  } catch(error) {
+    console.log(error);
+  }
+}
+
+login();
+
 
