@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{font-size: 3rem;}
+        h1{background: #fff000;}
+        .menu{display: flex; background: yellowgreen;}
+        .menu-link{
+            margin: .5em;
+            padding: .5em;
+            color: #fff;
+            background: dodgerblue;
+            text-decoration: none;
+            list-style: none;
+        }
+        .menu-active{
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-title">
+        Event
+    </h1>
+    <nav class="menu">
+        <a href="#" class="menu-link" data-menu="1">menu1</a>
+        <a href="#" class="menu-link" data-menu="2">menu2</a>
+        <a href="#" class="menu-link" data-menu="3">menu3</a>
+    </nav>
+
+    <script>
+        var currentMenu;
+        var menu = document.querySelector('.menu');
+
+        function clickHandler (e) {
+            console.log(this)
+            // this란? addEventListener를 호출한 객체다. menu에 해당.
+            // 함수가 이벤트핸들러로 실행되었을 때, 첫 번쨰 매개변수 자리에 자동으로 들어오는 애가 있다.
+            // 자동으로 들어오는 그 매개변수를 일단 e라는 이름의 변수로 만들어서 넣었다.
+            console.log(e);
+            // 그 매개변수를 이벤트객체라고 하고, 여기서는 마우스클릭이벤트다. 이 이벤트는 클릭과 관련해서 많은 정보가 담겨있다. 
+            console.log(e.currentTarget); // e.currentTarget은 this와 같다.
+            console.log(e.target); // target은 currentTarget과 다르다. 진짜로 눌러지는 것이 콘솔창에 찍힌다.
+            // 이렇게 이벤트 위임해서 클릭 이벤트객체의 target이라는 속성을 쓰면 된다.
+
+            if(currentMenu) {
+                currentMenu.classList.remove('menu-active');
+            }
+            e.target.classList.add('menu-active');
+            currentMenu = e.target;
+        }
+
+        menu.addEventListener('click', clickHandler);
+
+        // 더 효율적으로 dom7.html에서 작성했다. 
+
+    </script>
+</body>
+</html>

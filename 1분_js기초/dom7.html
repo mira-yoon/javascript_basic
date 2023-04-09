@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{font-size: 3rem;}
+        h1{background: #fff000;}
+        .menu{display: flex; background: yellowgreen;}
+        .menu-link{
+            margin: .5em;
+            padding: .5em;
+            color: #fff;
+            background: dodgerblue;
+            text-decoration: none;
+            list-style: none;
+        }
+        .menu-active{
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-title">
+        Event
+    </h1>
+    <nav class="menu">
+        <a href="#" class="menu-link" data-menu="1">menu1</a>
+        <a href="#" class="menu-link" data-menu="2">menu2</a>
+        <a href="#" class="menu-link" data-menu="3">menu3</a>
+    </nav>
+
+    <script>
+        var currentMenu;
+        var menu = document.querySelector('.menu');
+
+        function activate(elem) {
+            elem.classList.add('menu-active');
+            currentMenu = elem;
+        }
+
+        function inactivate(elem) {
+            elem.classList.remove('menu-active');
+            
+        }
+
+        function clickHandler (e) {
+
+            if(currentMenu) {
+                inactivate(currentMenu);
+            }
+            activate(e.target);
+        }
+
+        menu.addEventListener('click', clickHandler);
+
+        activate(document.querySelectorAll('.menu-link')[0]); // 첫번째 아이템만 활성화 시키기
+        /*
+        위와 같이 함수를 기능별로 구분해 놓으면 첫 번째 아이템만 활성화 시키는 경우에
+        activate 함수만 따로 호출이 가능하므로, 간단하게 할 수 있다.
+        */
+
+    </script>
+</body>
+</html>

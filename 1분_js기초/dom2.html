@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{font-size: 3rem;}
+        h1{background: #fff000;}
+    </style>
+</head>
+<body>
+    <h1 id="main-title">
+        <span class="desc">hello 0</span>
+        <span class="desc">hello 1</span>
+        <span class="desc">hello 2</span>
+        DOM (Document Object Model)
+    </h1>
+    <article>
+        <header class="main-header">header</header>
+        <section>
+            <header>s header</header>
+            section 1
+        </section>
+        <section>
+            <header>s header</header>
+            section 2
+        </section>
+    </article>
+
+    <script>
+        var title = document.getElementById('main-title');
+        var titleSpan = title.getElementsByTagName('span');
+        console.log(titleSpan);
+        console.log(titleSpan[0]);
+        // id는 하나밖에 없는데, 태그는 여러개가 있을 수 있으므로 여러개라고 가정하고 배열처럼 나오는 것이다. 
+
+    </script>
+</body>
+</html>

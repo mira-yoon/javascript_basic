@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{font-size: 3rem;}
+        h1{background: #fff000;}
+        .ilbuni{
+            width: 700px;
+        }
+        .ilbuni img{
+            display: block;
+            width: 200px;
+        }
+        .link-google {color: red;}
+        .special {
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-title">
+        Event
+    </h1>
+    <ul class="ilbuni-mom">
+        <li class="ilbuni">
+            <img src="images/01.jpg" alt="">
+            <a class="link-google" href="https://google.com">Google</a>
+        </li>
+        <li class="ilbuni"><img src="images/02.jpg" alt=""></li>
+        <li class="ilbuni"><img src="images/03.jpg" alt=""></li>
+    </ul>
+
+    <button class="btn">클릭하세요!</button>
+
+    <script>
+    var ilbuniMom = document.querySelector('.ilbuni-mom');
+    var listElem = document.createElement('li');
+    listElem.innerHTML = '<span>일분이</span>';
+    ilbuniMom.appendChild(listElem); //appendChild를 해야 비로소 화면에 나온다. 이걸로 조립을 해야 한다.
+
+    //innerHTML은 메소드가 아니라 속성이다. 메소드면 뒤에 괄호가 붙는데...    
+
+    var btn = document.querySelector('.btn');
+    var mainTitle = document.querySelector('#main-title');
+
+    function btnClickHandler(){
+        mainTitle.style.background = 'dodgerblue';
+    }
+
+    btn.addEventListener('click', btnClickHandler);
+    // btn.onclick = btnClickHandler; 
+    // onclick을 쓰면 간단하지만 addEventListener보다 기능이 없다.
+    // onclick을 쓰면 클릭됐을 때 실행할 함수를 하나만 지정할 수 있다. onclick은 속성이기 때문에.
+
+
+    /*
+    btn.addEventListener('click', btnClickHandler);
+    btn.addEventListener('click', btnClickHandler2);
+    btn.addEventListener('click', btnClickHandler3);
+    // 이렇게 쓰면 클릭했을 때 함수가 여러개 추가되는 것이다. 
+
+    btn.onclick = btnClickHandler;
+    btn.onclick = btnClickHandler2;
+    btn.onclick = btnClickHandler3;
+    // 이렇게 쓰면 속성의 값을 바꿔버리는 것이다. 버튼을 클릭했을 때 실행되는 함수를 바꿔버리는 것이다.
+
+    // onclick을 쓰면서 함수를 여러개 실행하기
+    btn.onclick = function(){
+        btnClickHandler();
+        btnClickHandler2();
+        btnClickHandler3();
+    }
+
+    // 그래도 addEventListener가 그 외에 여러 기능이 있기 때문에 onclick보다 addEventListener를 많이 쓴다.
+    
+    */
+
+    </script>
+</body>
+</html>

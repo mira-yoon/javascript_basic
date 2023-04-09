@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{font-size: 3rem;}
+        h1{background: #fff000;}
+        .ilbuni{
+            width: 700px;
+        }
+        .ilbuni img{
+            display: block;
+            width: 100%;
+        }
+        .link-google {color: red;}
+        .special {
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-title">
+        DOM (Document Object Model)
+        <small>small</small>
+    </h1>
+    <ul>
+        <li class="ilbuni">
+            <img src="images/01.jpg" alt="">
+            <a class="link-google" href="https://google.com">Google</a>
+        </li>
+        <li class="ilbuni"><img src="images/02.jpg" alt=""></li>
+        <li class="ilbuni"><img src="images/03.jpg" alt=""></li>
+    </ul>
+
+    <script>
+        /* querySelector, querySelectorAll */
+        var mainTitle = document.querySelector('#main-title small');
+        // querySelector는 따옴표 안에 css 선택자랑 똑같이 써 주면 된다.
+        // querySelector는 불러오는 객체가 여러개라면 첫 번째 것만 가지고 온다.
+        console.log(mainTitle);
+        var ilbuni = document.querySelectorAll('.ilbuni');
+        console.log(ilbuni); // NodeList 라는 배열처럼 여러개가 나온다. 
+        console.log(ilbuni[0]);
+        
+        for(var i = 0; i <ilbuni.length; i++ ){
+            ilbuni[i].style.border = '1px solid red';
+        }
+
+
+        /* getAttribute, setAttribute */
+        var link = document.querySelector('.ilbuni a');
+        console.log(link.getAttribute('href'));
+        console.log(link.getAttribute('class'));
+
+        link.setAttribute('href','https://studiomeal.com');
+        // 매개변수 자리에 인자로 내가 바꾸고 싶은 속성을 쓰면 된다.
+
+        // link.getAttribute('href')는 리턴값을 가질까? => 리턴값을 가지기 때문에 콘솔창에 찍힌 것이다.
+        // https://google.com 이게 리턴값이다. 
+        // setAttribute는 리턴값이 없다. 값을 바꾸는 것이기 때문에. 리턴값이 없는데 콘솔창에 찍어보면 undefined가 뜬다. 
+
+
+        /* 클래스 추가 */
+        // link.className = 'special'; // 이걸 넣으면 클래스명은 잘 들어가는데 원래 있던 스타일이 사라진다. 원래 있던 클래스가 사라져서.
+        // link.className = 'link-google special'; // 이렇게 해야 원래 있던 클래스도 붙어있다. => 그래서 className 은 잘 안쓴다.
+
+        link.classList.add('special','foo'); // 이렇게 써야 원래 있던 클래스를 그대로 두고 클래스를 더 추가하게 된다.
+
+        setTimeout(function(){
+            link.classList.remove('link-google','foo'); 
+        },2000);
+        
+
+        console.log(link.classList.contains('special')); // true // 클래스 가졌는지 참거짓판별. 제이쿼리의 hasClass()와 비슷. 불리언값으로 결과값이 나온다.
+
+
+
+
+    </script>
+</body>
+</html>

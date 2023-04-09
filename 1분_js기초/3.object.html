@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Object</h1>
+    <script>
+        // 객체는 속성과 기능(동작)을 가진 기능체다. - 쉽게 생각해서..
+
+        console.log(name); // 빈칸으로 콘솔창에 뜬다.
+        // 사실 전역변수는 윈도우의 전역변수인 것이다.
+        // 윈도우가 전역객체다.
+        // name은 윈도우가 원래부터 갖고 있던 전역변수다. 
+        console.log(window.name); // 이거랑 위에거랑 같다.
+
+        var person = {};
+        person.username = '동네79'; 
+        person.age = 12;
+        person.introduce = function (){
+            console.log('안녕? 나는 '+this.username+'야. 나이는 '+this.age+'살이야.');
+            // this는 person 이라는 이 객체 자체를 가르킨다.
+        }
+        console.log(person.username);
+        person.introduce();
+
+        // 여기서 name, age를 속성(property)라고 한다.
+        // 속성 중에서 값이 함수인 경우(기능,동작을 갖는 경우)에는  메서드(method)라고 한다.
+
+        // introduce도 속성인데 함수면 특별히 메서드라고 부른다.
+
+        // 자바스크립트에서는 함수도 객체라서 변수의 값이나 속성값에 대입될 수 있다.
+
+        // console.log에서도 console 이 객체이고 log는 속성이다. 그런데 속성 중에서 메서드이다. 메서드니까 괄호로 호출을 한 것이다.
+
+
+        var person2 = {
+            username: 'Zena',
+            age : 20,
+            introduce : function(){
+                console.log('안녕? 나는 '+this.username+'야. 나이는 '+this.age+'살이야.');
+            }
+        };
+        person2.introduce(); 
+
+
+
+        // 생성자(constructor) 함수 - 객체를 생성하는 함수
+        // 생성자는 관례적으로 앞글자를 대문자로 만든다.
+        function Person(username, age) {
+            this.username = username; // this는 Person 이라는 객체를 가르킨다. this. 바로 뒤에 있는 username 은 Person객체의 속성이름이다. = 뒤에 있는 username 은 매개변수의 username을 그대로 쓴 것이다. 
+            this.age = age;
+            this.introduce = function (){
+            console.log('안녕? 나는 '+this.username+'야. 나이는 '+this.age+'살이야.');
+            }
+            console.log(this);
+        }
+
+        // 생성된 개별객체 하나하나를 인스턴스(instance)라고 한다. 
+        var p1 = new Person('동네79','20'); // new Person('동네79','20') 이 인스턴스다. 
+        var p2 = new Person('일분이','3');
+
+        // 생성자 함수라고 해서 다른 함수와 특별히 다르게 생긴 것은 아니다. 그렇기 때문에 아래와 같이 new 없이 써도 호출을 할 수 있지만, this 가 동작을 제대로 안한다.
+        Person('동네79','20'); // 이렇게 하게 되면 this를 윈도우 전역객체를 받게 된다. 콘솔로 this를 찍어보면 알 수 있다.
+
+
+
+        p1.introduce(); 
+        p2.introduce(); 
+
+
+
+
+
+        
+
+
+    </script>
+</body>
+</html>

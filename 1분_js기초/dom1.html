@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{font-size: 3rem;}
+        h1{background: #fff000;}
+    </style>
+    
+    <script>
+    // window는 자바스크립트 전역객체이다.
+    window.onload = function () { // 전체문서가 로드가 되면 함수를 실행해주세요. 
+    // onload라는 속성의 값으로 함수를 할당한 것    
+        var title = document.getElementById('main-title');
+        console.log(title);    
+    }
+
+    //addEventListener 라는 메서드를 실행했다. 함수를 실행했다. addEventListener 라는 함수의 첫 번째 매개변수 자리에 이벤트 이름이 따옴표 안에 들어간다.
+    window.addEventListener('load', function(){
+        var title = document.getElementById('main-title');
+        console.log(title);    
+    }); // 이 방식은 전체 문서가 다 로드될 때 까지 기다린다. 예를 들면 문서에 무거운 이미지가 많으면, 그게 로드될 때 까지 기다려서 시간이 걸릴 수 있다.
+
+    window.addEventListener('DOMContentLoaded', function(){
+        var title = document.getElementById('main-title');
+        console.log(title);    
+    });
+    // 돔이 로드될 때 까지만 기다린다.
+    // 예를 들면 이미지 데이터까지 실제로 로드될 때 까지 기다리는게 아니라 <img src="img.png"> 이런 태그만 인식을 하고 돔 구조는 로드가 되었다고 판단을 한다.
+
+    // 제이쿼리에서 $(document).ready(function(){}) 이거나 $(function (){}) 이거 둘 다 DOMContentLoaded 처럼 동작한다.
+    // 제이쿼리에서 $(document).ready(function(){}) 이건 공식적으로는 지원을 안 한다. $(function (){}) 이것을 쓸 것.
+
+    </script>
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <h1 id="main-title">DOM (Document Object Model)</h1>
+    <article>
+        <header class="main-header">header</header>
+        <section>
+            <header>s header</header>
+            section 1
+        </section>
+        <section>
+            <header>s header</header>
+            section 2
+        </section>
+    </article>
+    
+    <script>
+        var title = document.getElementById('main-title');
+        console.log(title);
+
+        // head에 넣은 방식과 비교를 해 보면 속도의 차이가 있다. 
+        // 해보니까 defer 넣은 것 보다 이게 더 빠르다. 무거울 때는 어떨지 모르겠다. 
+    </script>
+
+</body>
+</html>

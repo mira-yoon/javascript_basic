@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 style="background: yellow">JavaScript</h1>
+  <script>
+    var a = -100;
+    function sample(){
+      if(a > 0){
+        return; 
+      }
+      console.log("test");
+    }
+    sample();
+    // return 의 쓰임새
+    // 이걸 쓰면 함수가 멈추고 실행한 곳으로 돌아간다.
+    // 조건문에서 조건을 충족하면 아래 내용을 실행하지 않고 함수를 종료할 때
+
+    function 더하기(a,b){
+      document.write(a + b +"<br>");
+    }
+    // 콘솔창에 찍히기만 할 뿐 이 값을 사용할 수는 없다.
+    var h = 더하기(100, 200);
+    console.log(h) // undefined // undefined는 에러가 아니라 데이터 형식 중 하나이다
+
+    function 더하기2(a,b){
+      document.write(a + b);
+      return a + b; // a + b를 리턴값(반환값)이라고 한다. 함수를 실행하면서 갔다 쓰라고 뱉어낸 결과값.
+    }
+    // 하지만 여기서는 리턴값이 있어서 리턴값을 사용할 수 있다.
+    var h = 더하기2(300, 400);
+    console.log(h) // 300
+    // 예를 들면 h라는 값을 아래와 같이 사용할 수 있다.
+    document.querySelector('h1').style.height = h + 'px';
+
+    //part2의 32분까지 들음
+
+
+
+
+
+  </script>
+</body>
+</html>

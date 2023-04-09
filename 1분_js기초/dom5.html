@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{font-size: 3rem;}
+        h1{background: #fff000;}
+        .menu{display: flex;}
+        .menu-link{
+            margin: .5em;
+            padding: .5em;
+            color: #fff;
+            background: dodgerblue;
+            text-decoration: none;
+            list-style: none;
+        }
+        .menu-active{
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-title">
+        Event
+    </h1>
+    <nav class="menu">
+        <a href="#" class="menu-link" data-menu="1">menu1</a>
+        <a href="#" class="menu-link" data-menu="2">menu2</a>
+        <a href="#" class="menu-link" data-menu="3">menu3</a>
+    </nav>
+
+    <script>
+        
+        var currentMenu; // 현재 활성화된 메뉴를 담을 변수
+        var menuLinks = document.querySelectorAll('.menu-link');
+
+        // 이벤트가 발생되었을 때 실행되는 함수의 이름을 이벤트핸들러 또는 이벤트리스너 라고 한다.
+        function clickMenuHandler() {
+            
+            //방법1 제이쿼리에서 많이 쓰는 방식. 모든 돔을 돌면서 클래스를 삭제해야 하니 비효율적.
+            /*
+            for(var i = 0; i < menuLinks.length; i++ ){
+                menuLinks[i].classList.remove('menu-active');
+            }
+            this.classList.add('menu-active'); 
+            */
+
+            
+            //방법2 이 방식도 비효율적이다.
+            /*
+            var activeMenu = document.querySelector('.menu-active');
+            if(activeMenu) {
+                activeMenu.classList.remove('menu-active');
+            }
+            this.classList.add('menu-active'); 
+            */
+
+            if(currentMenu) { // currentMenu가 값을 갖고 있을 때에만 실행
+                currentMenu.classList.remove('menu-active');
+            }
+            
+            this.classList.add('menu-active');
+            currentMenu = this;
+
+        }
+        for(var i = 0; i < menuLinks.length; i++ ){
+            menuLinks[i].addEventListener('click',clickMenuHandler);
+        }
+
+        // 이벤트 위임이라는 방법을 통해서 더 효율적으로 바꿔볼 것이다.
+        // 더 효율적으로 dom6.html에서 작성했다. 
+
+        
+    </script>
+</body>
+</html>

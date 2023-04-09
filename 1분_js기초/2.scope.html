@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //함수의 유효범위(scope)
+        var a = 100; // 전역변수
+        console.log(a);
+        function sample1(){
+            var a = 'sample1 내부의 a'; // 'sample1 내부의 a'가 콘솔창에 나온다. 함수 안에서 일단은 변수를 찾는 것이다. 함수 안에 없으면 그 때 바깥에서 찾는 것이다.
+            var b = 200; // 지역변수
+            console.log('sample1에서 출력한 ' + a);
+            console.log('sample1에서 출력한 ' + b);
+
+            function sample2(){
+                var c = 10000;
+                console.log(b);
+            }
+            // console.log(c); // 에러가 난다.
+            sample2(); // 함수 안에 함수가 있으니, sample2한테는 b가 전역변수처럼 쓰여서 밖에 있는 것을 안에서 쓸 수 있는 것이다. 
+        }
+
+        sample1();
+
+        console.log(b); // 에러가 난다. 함수 안에서 만든 변수는 밖에서 접근이 안된다.
+
+        // 전역변수는 최대한 안 쓰는 것이 좋다. 
+        
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
